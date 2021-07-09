@@ -5,22 +5,59 @@ const colors = [
   { hex: "#673ab7", rgb: "103,58,183" },
 ];
 
-function createColorCardsMarkup(color) {
-  `
-  <div class="palette js-palette">
-  <div class="color-card">
-    <div
-      class="color-swatch"
-      data-hex="#955014"
-      data-rgb="149,80,20"
-      style="background-color: #955014"
-    ></div>
-    <div class="color-meta">
-      <p>HEX: #955014</p>
-      <p>RGB: 149,80,20</p>
+const paletteContainer = document.querySelector(".js-palette");
+const cardsMarkup = createColorCardsMarkup(colors);
+
+paletteContainer.insertAdjacentHTML("beforeend", cardsMarkup);
+
+paletteContainer.addEventListener("click", onPaletteContainerClick);
+
+function createColorCardsMarkup(colors) {
+  return colors
+    .map(({ hex, rgb }) => {
+      return `
+    <div class="color-card">
+      <div
+        class="color-swatch"
+        data-hex="${hex}"
+        data-rgb="${rgb}"
+        style="background-color: ${hex}"
+      ></div>
+      <div class="color-meta">
+        <p>HEX: ${hex}</p>
+        <p>RGB: ${rgb}</p>
+      </div>
     </div>
-  </div>
-</div> 
-    
     `;
+    })
+    .join("");
+}
+
+function onPaletteContainerClick(evt) {
+  const isColorSwatchEl = evt.target.classList.contains("color-swatch");
+  if (!isColorSwatchEl) {
+    return;
+  }
+
+  const swatchEl = evt.target;
+  // -----------=== closest ===---------- ищет предка по классу
+  const parentColorCard = swatchEl.closest(".color-card");
+
+  removeActiveCardClass();
+  addActiveCardClass(parentColorCard);
+  setBodyBgColor(swatch.dataset.hex);
+}
+
+function setBodyBgColor(color) {
+  document.body.style.backgroundColor = swatchEl.dataset.hex;
+}
+function removeActiveCardClass() {
+  const currentActiveCard = document.querySelector(".color-card.is-active");
+
+  if (currentActiveCard) {
+    currentActiveCard.classList.remove("is-active");
+  }
+}
+function addActiveCardClass(card) {
+  parentColorCard.classList.add("is-active");
 }
