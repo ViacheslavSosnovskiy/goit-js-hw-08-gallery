@@ -16,4 +16,8 @@ _.debounce;
 // ------------------------------------
 
 const inputRef = document.querySelector(".js-class");
-inputRef.addEventListener("input", _.debounce(oninputChange, 300));
+inputRef.addEventListener("input", _.debounce(oninputChange, 2000));
+
+// function oninputChange(event) {
+//   inputInvocationCounter; += 1;
+// }
