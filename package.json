@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/ViacheslavSosnovskiy/goit-js-hw-08-gallery/issues"
   },
-  "homepage": "https://github.com/ViacheslavSosnovskiy/goit-js-hw-08-gallery#readme"
+  "homepage": "https://github.com/ViacheslavSosnovskiy/goit-js-hw-08-gallery#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^17.4.1",
+    "shortid": "^2.2.16"
+  }
 }
